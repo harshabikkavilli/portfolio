@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import {Menubar} from 'primereact/menubar';
 import React from 'react';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
-import Logo from '../assets/logo.jpeg';
+import Logo from '../assets/logo.png';
 
 export default function NavBar() {
 	const location = useLocation();
