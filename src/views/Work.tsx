@@ -167,7 +167,7 @@ const Wrapper = styled.div`
 		props.theme.isBigScreen
 			? css`
 					width: calc(100% - 4rem);
-					margin: auto;
+					margin: 2rem;
 			  `
 			: css`
 					flex-direction: column;
