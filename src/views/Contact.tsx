@@ -19,6 +19,7 @@ export default function Contact() {
 	};
 	const [formData, setFormData] = useState<FormData>(defaultValues);
 	const [loading, setLoading] = useState<boolean>(false);
+	const [success, setSuccess] = useState<boolean>(false);
 
 	const {
 		control,
@@ -47,10 +48,18 @@ export default function Contact() {
 	async function onSubmit(data: FormData) {
 		setLoading(true);
 		setFormData(data);
-		await sendMessage(data);
-		setShowMessage(true);
-		reset();
-		setLoading(false);
+		try {
+			await sendMessage(data);
+			setShowMessage(true);
+			setSuccess(true);
+		} catch (err) {
+			console.log(err);
+			setShowMessage(true);
+			setSuccess(false);
+		} finally {
+			reset();
+			setLoading(false);
+		}
 	}
 
 	return (
@@ -64,19 +73,35 @@ export default function Contact() {
 						footer={dialogFooter}
 						showHeader={false}
 						breakpoints={{'960px': '80vw'}}
-						style={{width: '30vw'}}>
-						<div className='p-d-flex p-ai-center p-dir-col p-pt-6 p-px-3'>
-							<i
-								className='pi pi-check-circle'
-								style={{fontSize: '5rem', color: 'var(--green-500)'}}></i>
-							<h5>Message Receied!</h5>
-							<p style={{lineHeight: 1.5, textIndent: '1rem'}}>
-								Thank you, <b>{formData.name}</b> for reaching out.
-							</p>
-							<p style={{lineHeight: 1.5, textIndent: '1rem'}}>
-								I will contact you within the next <strong>48hrs</strong>.
-							</p>
-						</div>
+						style={{width: '50vw'}}>
+						{success ? (
+							<div className='p-d-flex p-ai-center p-dir-col p-pt-6 p-px-3'>
+								<i
+									className='pi pi-check-circle'
+									style={{fontSize: '5rem', color: 'var(--green-500)'}}></i>
+								<h5>Message Sent!</h5>
+								<p style={{lineHeight: 1.5, textIndent: '1rem'}}>
+									Thank you, <b>{formData.name}</b> for reaching out.
+								</p>
+								<p style={{lineHeight: 1.5, textIndent: '1rem'}}>
+									I will contact you within the next <strong>48hrs</strong>.
+								</p>
+							</div>
+						) : (
+							<div className='p-d-flex p-ai-center p-dir-col p-pt-6 p-px-3'>
+								<i
+									className='pi pi-times-circle'
+									style={{fontSize: '5rem', color: 'var(--pink-500)'}}></i>
+								<h5>Message Failed!</h5>
+								<p style={{lineHeight: 1.5, textIndent: '1rem'}}>
+									Thank you, <b>{formData.name}</b> for reaching out.
+								</p>
+								<p style={{lineHeight: 1.5, textIndent: '1rem'}}>
+									Something went wrong submitting your message. Please try other
+									contact options or check again after sometime.
+								</p>
+							</div>
+						)}
 					</Dialog>
 
 					<div className='p-d-flex p-jc-center'>
