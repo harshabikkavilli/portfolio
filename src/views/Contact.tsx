@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import {Button} from 'primereact/button';
 import {Dialog} from 'primereact/dialog';
+import {Divider} from 'primereact/divider';
 import {InputText} from 'primereact/inputtext';
 import {InputTextarea} from 'primereact/inputtextarea';
 import React, {useState} from 'react';
@@ -106,7 +107,6 @@ export default function Contact() {
 
 					<div className='p-d-flex p-jc-center'>
 						<div className='card'>
-							<h5 className='p-text-center'>Login</h5>
 							<form onSubmit={handleSubmit(onSubmit)} className='p-fluid'>
 								<div className='p-field'>
 									<span className='p-float-label'>
@@ -200,6 +200,44 @@ export default function Contact() {
 									icon='pi pi-send'
 								/>
 							</form>
+							<Divider layout='horizontal' align='center'>
+								<b>OR</b>
+							</Divider>
+							<ContactsGroup>
+								<Button
+									className='p-button-rounded p-0 mx-2'
+									icon='pi pi-twitter'
+									onClick={() => {
+										window.open('https://twitter.com/harshabvns', '_blank');
+									}}
+									style={{backgroundColor: 'var(--blue-500)', color: '#fff'}}
+								/>
+								<Button
+									className='p-button-rounded p-0 mx-2'
+									icon='pi pi-linkedin'
+									onClick={() => {
+										window.open(
+											'https://www.linkedin.com/in/harsha-bikkavilli-0382051b/',
+											'_blank'
+										);
+									}}
+									style={{backgroundColor: '#055a9b', color: '#fff'}}
+								/>
+								<Button
+									className='p-button-rounded p-0 mx-2'
+									icon='pi pi-github'
+									onClick={() => {
+										window.open(
+											'https://github.com/harshabikkavilli',
+											'_blank'
+										);
+									}}
+									style={{
+										backgroundColor: 'var(--bluegray-800)',
+										color: '#fff'
+									}}
+								/>
+							</ContactsGroup>
 						</div>
 					</div>
 				</div>
@@ -223,4 +261,10 @@ const Wrapper = styled.div`
 					width: calc(100% - 2rem);
 					margin: 1rem;
 			  `};
+`;
+
+const ContactsGroup = styled.div`
+	display: flex;
+	justify-content: center;
+	width: 100%;
 `;
