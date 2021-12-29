@@ -200,7 +200,10 @@ export default function Contact() {
 									icon='pi pi-send'
 								/>
 							</form>
-							<Divider layout='horizontal' align='center'>
+							<Divider
+								layout='horizontal'
+								align='center'
+								style={{color: 'white'}}>
 								<b>OR</b>
 							</Divider>
 							<ContactsGroup>
