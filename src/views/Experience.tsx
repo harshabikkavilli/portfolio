@@ -1,4 +1,5 @@
 import AOS from 'aos';
+import {Button} from 'primereact/button';
 import {Card} from 'primereact/card';
 import {Timeline} from 'primereact/timeline';
 import React, {useEffect} from 'react';
@@ -10,15 +11,15 @@ import PhotosLogo from '../assets/experience/photosLogo.png';
 import {useResponsive} from '../providers/ResponsiveProvider';
 import BaseView from './BaseView';
 
-type EVENT = {
+type ExperienceItem = {
 	borderColor?: string;
+	color: string;
 	date: string;
 	description: string;
-	role: string;
 	icon: string;
-	color: string;
-	image: string;
+	link: string;
 	name: string;
+	role: string;
 };
 export default function Experience() {
 	const {isBigScreen} = useResponsive()!;
@@ -37,13 +38,14 @@ export default function Experience() {
 		};
 	}, []);
 
-	const events1 = [
+	const experienceItems: ExperienceItem[] = [
 		{
 			color: '#2e2e2e',
 			date: 'May 2020 - Present',
 			description: `As a core member of Amazon Care Communications squad, 
 			designing and driving multiple high profile products that scale to millions of users.`,
 			icon: CareLogo,
+			link: 'https://amazon.care/',
 			name: 'Amazon Care',
 			role: 'Software Development Engineer'
 		},
@@ -53,6 +55,7 @@ export default function Experience() {
 			description: `As a lead engineer for Amazon Prints, 
 			I have successfully designed and launched several prints related products like Standard Prints, Wall Decor, Photo books.`,
 			icon: PhotosLogo,
+			link: 'https://www.amazon.com/photos',
 			name: 'Amazon Photos',
 			role: 'Software Development Engineer'
 		},
@@ -61,6 +64,7 @@ export default function Experience() {
 			date: 'May 2016 - August 2016',
 			description: `Created high impact as an intern in developing tools with Angular/NodeJS that integrates and runs several python backed tests on routers.`,
 			icon: JuniperLogo,
+			link: 'https://www.juniper.net/',
 			name: 'Juniper Networks',
 			role: 'Software Engineer Intern'
 		},
@@ -70,12 +74,13 @@ export default function Experience() {
 			date: 'July 2014 - June 2015',
 			description: `Being one of the founding members, created various Web-Applets using Java-JDBC, ORACLE, SQL.`,
 			icon: SevenhillsLogo,
+			link: 'https://www.sevenhillsehealth.com/',
 			name: 'Sevenhills e-Health',
 			role: 'Full-Stack Software Engineer'
 		}
 	];
 
-	const customizedMarker = (item: EVENT) => {
+	const customizedMarker = (item: ExperienceItem) => {
 		return (
 			<span
 				className='custom-marker p-shadow-2'
@@ -89,7 +94,7 @@ export default function Experience() {
 		);
 	};
 
-	const customizedContent = (item: EVENT, index: number) => {
+	const customizedContent = (item: ExperienceItem, index: number) => {
 		const getAOSStyle = () => {
 			if (isBigScreen && index % 2 !== 0) {
 				return 'fade-left';
@@ -99,15 +104,16 @@ export default function Experience() {
 		return (
 			<div data-aos={getAOSStyle()}>
 				<Card title={item.name} subTitle={item.role}>
-					{item.image && (
-						<img
-							src={`images/product/${item.image}`}
-							alt={item.name}
-							width={200}
-							className='p-shadow-2'
-						/>
-					)}
 					<p>{item.description}</p>
+					<Button
+						className='p-button-link'
+						icon='pi pi-external-link'
+						label='Visit site'
+						onClick={() => {
+							window.open(item.link, '_blank');
+						}}
+						style={{fontWeight: 'bold'}}
+					/>
 				</Card>
 			</div>
 		);
@@ -117,7 +123,7 @@ export default function Experience() {
 		<BaseView>
 			<Wrapper>
 				<Timeline
-					value={events1}
+					value={experienceItems}
 					align='alternate'
 					className='customized-timeline'
 					marker={customizedMarker}
@@ -135,7 +141,7 @@ const Wrapper = styled(Card)`
 		props.theme.isBigScreen
 			? css`
 					width: calc(100% - 4rem);
-					margin: auto;
+					margin: 2rem;
 			  `
 			: css`
 					flex-direction: column;
