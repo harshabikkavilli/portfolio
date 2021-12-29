@@ -135,7 +135,7 @@ const Wrapper = styled(Card)`
 		props.theme.isBigScreen
 			? css`
 					width: calc(100% - 4rem);
-					margin: 2rem;
+					margin: auto;
 			  `
 			: css`
 					flex-direction: column;

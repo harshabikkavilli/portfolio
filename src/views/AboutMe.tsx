@@ -3,6 +3,7 @@ import {Chip} from 'primereact/chip';
 import React from 'react';
 import styled, {css, ThemeProvider} from 'styled-components';
 import Hero from '../assets/hero.jpg';
+import Testimonials from '../components/Testimonials';
 import {useResponsive} from '../providers/ResponsiveProvider';
 import BaseView from './BaseView';
 
@@ -12,7 +13,7 @@ export default function AboutMe() {
 	return (
 		<ThemeProvider theme={{isBigScreen}}>
 			<BaseView>
-				<div data-aos='fade'>
+				<Wrapper>
 					<Info title="Hi, I'm Harsha" subTitle='Full-Stack Software Engineer'>
 						<Introduction>
 							<StyledPhoto src={Hero} bgPos='center center'></StyledPhoto>
@@ -61,11 +62,32 @@ export default function AboutMe() {
 							</Description>
 						</Introduction>
 					</Info>
-				</div>
+					<Testimonials />
+				</Wrapper>
 			</BaseView>
 		</ThemeProvider>
 	);
 }
+
+const Wrapper = styled.div`
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	${(props) =>
+		props.theme.isBigScreen
+			? css`
+					width: calc(100% - 4rem);
+					margin: 2rem;
+			  `
+			: css`
+					flex-direction: column;
+					width: calc(100% - 2rem);
+					margin: 1rem;
+			  `};
+`;
 
 const Introduction = styled.div`
 	width: 100%;
@@ -113,18 +135,6 @@ const StyledPhoto = styled.div<{src: string; bgPos: string}>`
 const Info = styled(Card)`
 	text-align: left;
 	display: flex;
-
-	${(props) =>
-		props.theme.isBigScreen
-			? css`
-					width: calc(100% - 4rem);
-					margin: 2rem;
-			  `
-			: css`
-					flex-direction: column;
-					width: calc(100% - 2rem);
-					margin: 1rem;
-			  `};
 `;
 
 const Description = styled.div`

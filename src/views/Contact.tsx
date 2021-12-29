@@ -6,13 +6,8 @@ import {InputTextarea} from 'primereact/inputtextarea';
 import React, {useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import styled, {css} from 'styled-components';
+import {FormData, sendMessage} from '../awsFunctions';
 import BaseView from './BaseView';
-
-type FormData = {
-	email: string;
-	message: string;
-	name: string;
-};
 
 export default function Contact() {
 	const [showMessage, setShowMessage] = useState(false);
@@ -49,9 +44,10 @@ export default function Contact() {
 		</div>
 	);
 
-	function onSubmit(data: FormData) {
+	async function onSubmit(data: FormData) {
 		setLoading(true);
 		setFormData(data);
+		await sendMessage(data);
 		setShowMessage(true);
 		reset();
 		setLoading(false);
@@ -195,7 +191,7 @@ const Wrapper = styled.div`
 		props.theme.isBigScreen
 			? css`
 					width: calc(100% - 4rem);
-					margin: 2rem;
+					margin: auto;
 			  `
 			: css`
 					flex-direction: column;
