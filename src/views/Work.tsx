@@ -4,6 +4,9 @@ import {Card} from 'primereact/card';
 import {Chip} from 'primereact/chip';
 import React, {useEffect} from 'react';
 import styled, {css} from 'styled-components';
+import AmazonCare from '../assets/work/AmazonCare.png';
+import AmazonDrive from '../assets/work/AmazonDrive.png';
+import AmazonPrints from '../assets/work/AmazonPrints.png';
 import HKFlix from '../assets/work/HKFlix.png';
 import SafeTravels from '../assets/work/SafeTravels.png';
 import SafeTravelsMobile from '../assets/work/SafeTravelsMobile.png';
@@ -37,8 +40,7 @@ export default function Work() {
 			if (infoTye === INFO_TYPE.SECONDARY) return 'fade-left';
 			return 'fade-right';
 		}
-		if (infoTye === INFO_TYPE.SECONDARY) return 'fade-up';
-		return 'fade-down';
+		return 'fade-up';
 	};
 
 	return (
@@ -46,9 +48,144 @@ export default function Work() {
 			<Wrapper className='work'>
 				<div data-aos={getImageAOSStyle(INFO_TYPE.PRIMARY)}>
 					<Info
+						title='Amazon Care'
+						subTitle='Health care for all'
+						style={{borderRadius: '0.75rem 0.75rem 0 0'}}>
+						<Introduction>
+							<StyledPhoto src={AmazonCare} bgPos='top center'></StyledPhoto>
+							<Description>
+								<p>
+									Skip the waiting room and start a virtual primary or urgent
+									care visit from the comfort of your home.
+								</p>
+								<ul>
+									<li>
+										<p>
+											Currently contributing as a Full-Stack Engineer on Care
+											Communications Squad.
+										</p>
+									</li>
+									<li>
+										<p>
+											Designed and developed the high impact Omnichannel project
+											which integrates chat and video services.
+										</p>
+									</li>
+									<li>
+										<p>
+											Lead the design to drive Amazon care messaging platform’s
+											re-architecture to integrate with Amazon chime thereby
+											helping team focus on healthcare related features rather
+											than re-inventing the wheel.
+										</p>
+									</li>
+									<li>
+										<p>
+											Designed the front-end state machines to handle video and
+											chat sessions using XState and created rich UI components
+											in Vue/Typescript.
+										</p>
+									</li>
+									<li>
+										<p>
+											Built back-end services as part of Async Messaging
+											platform.
+										</p>
+									</li>
+								</ul>
+								<h5>Technologies</h5>
+								<div className='d-flex ai-center flex-wrap'>
+									<Chip label='Vue/Vuex' className='mr-2 mb-2 custom-chip' />
+									<Chip label='Typescript' className='mr-2 mb-2 custom-chip' />
+									<Chip label='AWS' className='mr-2 mb-2 custom-chip' />
+									<Chip label='xState' className='mr-2 mb-2 custom-chip' />
+									<Chip label='Java' className='mr-2 mb-2 custom-chip' />
+								</div>
+								<div className='pt-2'>
+									<Button
+										className='p-button-link'
+										icon='pi pi-external-link'
+										label='Visit application'
+										onClick={() => {
+											window.open('https://amazon.care/', '_blank');
+										}}
+										style={{fontWeight: 'bold'}}
+									/>
+								</div>
+							</Description>
+						</Introduction>
+					</Info>
+				</div>
+				<div data-aos={getImageAOSStyle(INFO_TYPE.SECONDARY)}>
+					<Info
+						title='Amazon Prints'
+						subTitle='Bring your favorite memories to life'
+						className='secondary'
+						style={{borderRadius: '0'}}>
+						<Introduction>
+							<Description>
+								<p>
+									Create custom keepsakes like wall décor, photo books, prints
+									and table-tops for special holidays like Valentine's Day,
+									Mother's Day, Father's Day, Halloween, Christmas, Easter, and
+									Hanukkah.
+								</p>
+								<ul>
+									<li>
+										<p>
+											Being a tech lead, designed and lead the team in
+											developing customer facing web applications where
+											customers can upload their photos and build their
+											customized photobooks, wall decor and collages for
+											printing using ReactJS/TypeScript.
+										</p>
+									</li>
+									<li>
+										<p>
+											Created in-house fault-tolerant, cross browser compatible
+											3D models purely based on CSS that enables customers to
+											preview their products.
+										</p>
+									</li>
+									<li>
+										<p>
+											Designing data models which can make both services and
+											clients development process easier.
+										</p>
+									</li>
+								</ul>
+								<h5>Technologies</h5>
+								<div className='d-flex ai-center flex-wrap'>
+									<Chip label='React/Redux' className='mr-2 mb-2' />
+									<Chip label='Typescript' className='mr-2 mb-2' />
+									<Chip label='Java' className='mr-2 mb-2' />
+									<Chip label='HTML' className='mr-2 mb-2' />
+									<Chip label='CSS' className='mr-2 mb-2' />
+								</div>
+								<div className='py-2'>
+									<Button
+										className='p-button-link'
+										icon='pi pi-external-link'
+										label='Visit application'
+										onClick={() => {
+											window.open(
+												'https://www.amazon.com/Amazon-Prints/b?ie=UTF8&node=14866317011',
+												'_blank'
+											);
+										}}
+										style={{fontWeight: 'bold'}}
+									/>
+								</div>
+							</Description>
+							<StyledPhoto src={AmazonPrints} bgPos='top center'></StyledPhoto>
+						</Introduction>
+					</Info>
+				</div>
+				<div data-aos={getImageAOSStyle(INFO_TYPE.PRIMARY)}>
+					<Info
 						title='SafeTravels'
 						subTitle='Travel Itinerary planner'
-						style={{borderRadius: '0.75rem 0.75rem 0 0'}}>
+						style={{borderRadius: '0'}}>
 						<Introduction>
 							<StyledPhoto
 								src={isBigScreen ? SafeTravels : SafeTravelsMobile}
@@ -110,7 +247,7 @@ export default function Work() {
 						title='HKFlix'
 						subTitle='A minimalist Netflix clone'
 						className='secondary'
-						style={{borderRadius: '0 0 0.75rem 0.75rem'}}>
+						style={{borderRadius: '0'}}>
 						<Introduction>
 							<Description>
 								<p>
@@ -151,6 +288,63 @@ export default function Work() {
 								</div>
 							</Description>
 							<StyledPhoto src={HKFlix} bgPos='top center'></StyledPhoto>
+						</Introduction>
+					</Info>
+				</div>
+				<div data-aos={getImageAOSStyle(INFO_TYPE.PRIMARY)}>
+					<Info
+						title='AmazonDrive'
+						subTitle='Manage your Amazon photos storage'
+						style={{borderRadius: '0 0 0.75rem 0.75rem'}}>
+						<Introduction>
+							<StyledPhoto src={AmazonDrive} bgPos='top center'></StyledPhoto>
+							<Description>
+								<p>
+									Increase your storage with plans starting at 100 GB for
+									$1.99/mo
+								</p>
+								<ul>
+									<li>
+										<p>
+											Built a new and user friendly web application from scratch
+											for the Amazon photos Manage storage department.
+										</p>
+									</li>
+									<li>
+										<p>
+											Drove the Amazon photos integration with Sony mobiles
+											organization.
+										</p>
+									</li>
+									<li>
+										<p>
+											Developed multiple storage realted features like near/over
+											quota and notifying customers accordingly.
+										</p>
+									</li>
+								</ul>
+								<h5>Technologies</h5>
+								<div className='d-flex ai-center flex-wrap'>
+									<Chip label='React/Redux' className='mr-2 mb-2 custom-chip' />
+									<Chip label='Typescript' className='mr-2 mb-2 custom-chip' />
+									<Chip label='HTML' className='mr-2 mb-2 custom-chip' />
+									<Chip label='CSS' className='mr-2 mb-2 custom-chip' />
+								</div>
+								<div className='pt-2'>
+									<Button
+										className='p-button-link'
+										icon='pi pi-external-link'
+										label='Visit application'
+										onClick={() => {
+											window.open(
+												'https://www.amazon.com/Amazon-Photos/b?ie=UTF8&node=13234696011',
+												'_blank'
+											);
+										}}
+										style={{fontWeight: 'bold'}}
+									/>
+								</div>
+							</Description>
 						</Introduction>
 					</Info>
 				</div>
