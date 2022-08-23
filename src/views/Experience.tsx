@@ -8,6 +8,7 @@ import SevenhillsLogo from '../assets/experience/7hillsLogo.png';
 import CareLogo from '../assets/experience/careLogo.png';
 import JuniperLogo from '../assets/experience/juniperLogo.png';
 import PhotosLogo from '../assets/experience/photosLogo.png';
+import SnapchatLogo from '../assets/experience/SnapchatLogo.png';
 import {useResponsive} from '../providers/ResponsiveProvider';
 import BaseView from './BaseView';
 
@@ -20,6 +21,7 @@ type ExperienceItem = {
 	link: string;
 	name: string;
 	role: string;
+	width?: string;
 };
 export default function Experience() {
 	const {isBigScreen} = useResponsive()!;
@@ -41,9 +43,20 @@ export default function Experience() {
 	const experienceItems: ExperienceItem[] = [
 		{
 			color: '#2e2e2e',
-			date: 'May 2020 - Present',
+			date: 'July 2022 - Present',
+			description: `Full stack engineer in Snap Ads Manager platform pod, 
+			designing and driving multiple high profile products that directly impacts the company's revenue.`,
+			icon: SnapchatLogo,
+			link: 'https://forbusiness.snapchat.com/',
+			name: 'Snapchat Ads Manager',
+			role: 'Software Engineer',
+			width: '5rem'
+		},
+		{
+			color: '#2e2e2e',
+			date: 'May 2020 - July 2022',
 			description: `As a core member of Amazon Care Communications squad, 
-			designing and driving multiple high profile products that scale to millions of users.`,
+			played a lead role in developing multiple high profile products that scale to millions of users.`,
 			icon: CareLogo,
 			link: 'https://amazon.care/',
 			name: 'Amazon Care',
@@ -89,7 +102,11 @@ export default function Experience() {
 					padding: '2.25rem',
 					border: item.borderColor && `2px solid ${item.borderColor}`
 				}}>
-				<img src={item.icon} alt={item.name} style={{width: '3rem'}} />
+				<img
+					src={item.icon}
+					alt={item.name}
+					style={{width: item.width || '3rem'}}
+				/>
 			</span>
 		);
 	};
