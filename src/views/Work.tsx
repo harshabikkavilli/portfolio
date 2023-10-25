@@ -279,7 +279,7 @@ export default function Work() {
 										label='Visit application'
 										onClick={() => {
 											window.open(
-												'https://main.d13zdmao2ffrfd.amplifyapp.com/',
+												'https://main.div7wvun5adnr.amplifyapp.com/',
 												'_blank'
 											);
 										}}
