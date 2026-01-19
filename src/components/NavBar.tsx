@@ -1,5 +1,6 @@
-import { Briefcase, GraduationCap, Mail, Menu, Moon, Sun, Wrench, X } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import logo from '../assets/logoTransparent.png';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -47,21 +48,25 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { id: 'experience', label: '💼 Experiences', icon: Briefcase },
-    { id: 'education', label: '🎓 Education', icon: GraduationCap },
-    { id: 'skills', label: '🛠️ Skills', icon: Wrench },
-    { id: 'contact', label: '📞 Contact', icon: Mail },
+    { id: 'experience', label: '💼 Experiences' },
+    { id: 'education', label: '🎓  Education' },
+    { id: 'skills', label: '🛠️  Skills' },
+    { id: 'contact', label: '📞  Contact' },
   ];
 
   return (
     <>
       <nav className="sticky top-0 z-50 w-full pointer-events-none">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 px-6 py-3 flex items-center justify-between shadow-lg pointer-events-auto transition-all duration-300">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 px-6 py-3 flex items-center justify-between lg:justify-evenlyshadow-lg pointer-events-auto transition-all duration-300">
           <button 
             onClick={scrollToTop}
-            className="font-bold text-lg tracking-tight text-text-main-light dark:text-text-main-dark hover:opacity-80 transition-opacity z-50 relative"
+            className="hover:opacity-80 transition-opacity z-50 relative flex items-center"
           >
-            Harsha Bikkavilli
+            <img 
+              src={logo} 
+              alt="Harsha Bikkavilli" 
+              className="h-8 w-auto"
+            />
           </button>
           
           {/* Desktop Navigation */}
@@ -113,7 +118,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
               onClick={(e) => scrollToSection(e, link.id)}
               className="text-2xl font-bold text-text-main-light dark:text-text-main-dark hover:text-primary transition-colors flex items-center gap-3"
             >
-              <link.icon size={28} /> {link.label}
+              {link.label}
             </a>
           ))}
         </div>

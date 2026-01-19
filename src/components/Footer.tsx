@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../assets/logoTransparent.png';
 import { SocialLink } from '../types';
 
 interface FooterProps {
@@ -10,7 +11,11 @@ const Footer: React.FC<FooterProps> = ({ social }) => {
     <footer className="pt-20">
       <div className="bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 dark:from-primary/10 dark:via-primary/20 dark:to-primary/10 backdrop-blur-md border border-primary/20 dark:border-primary/10 px-12 py-24 shadow-lg">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <h2 className="text-2xl font-bold text-text-main-light dark:text-text-main-dark">Harsha Bikkavilli</h2>
+          <img 
+            src={logo} 
+            alt="Harsha Bikkavilli" 
+            className="h-10 w-auto"
+          />
           
           <div className="flex items-center gap-4">
             {social.map((link) => {
