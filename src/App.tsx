@@ -5,7 +5,7 @@ import Experience from './components/Experience';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import Interests from './components/Interests';
-import Navbar from './components/Navbar';
+import Navbar from './components/NavBar';
 import Skills from './components/Skills';
 import Testimonials from './components/Testimonials';
 import { DATA } from './constants';
