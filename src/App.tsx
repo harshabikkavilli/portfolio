@@ -1,63 +1,47 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import 'primeflex/primeflex.css';
-import 'primeicons/primeicons.css';
-import PrimeReact from 'primereact/api';
-import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/vela-blue/theme.css';
-import React from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {createGlobalStyle} from 'styled-components';
-import BasePage from './components/BasePage';
-import {withProviders} from './hoc';
-import './layout/layout.scss';
-import {ResponsiveProvider} from './providers/ResponsiveProvider';
-import AboutMe from './views/AboutMe';
-import Contact from './views/Contact';
-import Experience from './views/Experience';
-import Work from './views/Work';
+import React, { useEffect, useState } from 'react';
+import Contact from './components/Contact';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import Footer from './components/Footer';
+import Hero from './components/Hero';
+import Interests from './components/Interests';
+import Navbar from './components/Navbar';
+import Skills from './components/Skills';
+import Testimonials from './components/Testimonials';
+import { DATA } from './constants';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-		margin: 0;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-			'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-			'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-		font-size: 1rem;
-		font-weight: 400;
-		line-height: 1.5;
-		color: #212529;
-		text-align: left;
-		background: #edf1f5;;
-  }
-`;
+const App: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(true); // Default to dark mode based on the vibe of the design
 
-function App() {
-	AOS.init({
-		duration: 1200
-	});
-	PrimeReact.ripple = true;
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
-	return (
-		<BrowserRouter>
-			<GlobalStyle />
-			<BasePage>
-				<Routes>
-					<Route path='/' element={<AboutMe />} />
-					<Route path='/about' element={<AboutMe />} />
-					<Route path='/contact' element={<Contact />} />
-					<Route path='/experience' element={<Experience />} />
-					<Route path='/work' element={<Work />} />
-				</Routes>
-			</BasePage>
-		</BrowserRouter>
-	);
-}
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
-export default withProviders([ResponsiveProvider])(App);
+  return (
+    <div className="min-h-screen relative selection:bg-primary selection:text-black">
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      
+      <main className="max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-16">
+        <Hero data={DATA.hero} />
+        <Experience experiences={DATA.experiences} />
+        <Education education={DATA.education} />
+        <Skills skills={DATA.skills} />
+        <Interests interests={DATA.interests} />
+        <Testimonials testimonials={DATA.testimonials} />
+        <Contact contact={DATA.contact} />
+			</main>
+			
+			<Footer social={DATA.social} />
+    </div>
+  );
+};
+
+export default App;
