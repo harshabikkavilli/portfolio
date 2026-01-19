@@ -57,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode }) => {
   return (
     <>
       <nav className="sticky top-0 z-50 w-full pointer-events-none">
-        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 px-6 py-3 flex items-center justify-between lg:justify-evenlyshadow-lg pointer-events-auto transition-all duration-300">
+        <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-800/50 px-6 py-3 flex items-center justify-between lg:justify-evenly shadow-lg pointer-events-auto transition-all duration-300">
           <button 
             onClick={scrollToTop}
             className="hover:opacity-80 transition-opacity z-50 relative flex items-center"
